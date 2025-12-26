@@ -59,7 +59,7 @@
       <a href="#projects" class="px-6 py-3 bg-primary text-white rounded-xl hover:scale-105 transition">
         View Projects
       </a>
-      <a href="CV.pdf" class="px-6 py-3 border border-primary text-primary rounded-xl hover:bg-primary hover:text-white transition">
+      <a href="assets/data/CV.pdf" class="px-6 py-3 border border-primary text-primary rounded-xl hover:bg-primary hover:text-white transition">
         Download CV
       </a>
     </div>
@@ -116,22 +116,141 @@
   <h3 class="text-3xl font-bold mb-10 text-center">Projects</h3>
 
   <div class="grid md:grid-cols-3 gap-8">
-    <div onclick="openModal('Eleftheria Game','Platformer game created using Construct 2 with AI-assisted assets.')" class="project-card">
-      <h4>Eleftheria Game</h4>
-      <p>Game Development</p>
+    <!-- Project Card -->
+    <div onclick="openProjectModal('Eleftheria Game')" class="project-card cursor-pointer overflow-hidden rounded-2xl shadow hover:scale-105 transition">
+      <img src="https://via.placeholder.com/400x200?text=Eleftheria+Game" alt="Eleftheria Game" class="w-full h-40 object-cover">
+      <div class="p-4">
+        <h4 class="font-semibold text-lg mb-1">Eleftheria Game</h4>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Game Development</p>
+      </div>
     </div>
 
-    <div onclick="openModal('Metaverse Rumah Adat Lampung','Educational metaverse experience using Unity, Blender, and Spatial.io.')" class="project-card">
-      <h4>Metaverse Lampung</h4>
-      <p>Metaverse</p>
+    <div onclick="openProjectModal('Metaverse Lampung')" class="project-card cursor-pointer overflow-hidden rounded-2xl shadow hover:scale-105 transition">
+      <img src="https://via.placeholder.com/400x200?text=Metaverse+Lampung" alt="Metaverse Lampung" class="w-full h-40 object-cover">
+      <div class="p-4">
+        <h4 class="font-semibold text-lg mb-1">Metaverse Lampung</h4>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Metaverse</p>
+      </div>
     </div>
 
-    <div onclick="openModal('AI Music Projects','Instrumental music created using AI tools and published on YouTube.')" class="project-card">
-      <h4>AI Music</h4>
-      <p>AI Creative</p>
+    <div onclick="openProjectModal('AI Music Projects')" class="project-card cursor-pointer overflow-hidden rounded-2xl shadow hover:scale-105 transition">
+      <img src="https://via.placeholder.com/400x200?text=AI+Music" alt="AI Music Projects" class="w-full h-40 object-cover">
+      <div class="p-4">
+        <h4 class="font-semibold text-lg mb-1">AI Music Projects</h4>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">AI Creative</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- Project Modal -->
+<div id="projectModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+  <div class="bg-white dark:bg-gray-900 p-6 rounded-xl max-w-3xl w-full relative">
+    <button onclick="closeProjectModal()" class="absolute top-3 right-3 text-xl font-bold">×</button>
+    <h3 id="projectTitle" class="text-2xl font-bold mb-4"></h3>
+    <p id="projectDesc" class="text-gray-600 dark:text-gray-400 mb-4"></p>
+
+    <!-- Carousel -->
+    <div class="relative overflow-hidden rounded-lg">
+      <div id="carousel" class="flex transition-transform duration-500">
+        <!-- Media akan dimasukkan JS -->
+      </div>
+      <button onclick="prevSlide()" class="absolute top-1/2 left-2 -translate-y-1/2 bg-primary text-white p-2 rounded-full">‹</button>
+      <button onclick="nextSlide()" class="absolute top-1/2 right-2 -translate-y-1/2 bg-primary text-white p-2 rounded-full">›</button>
+    </div>
+
+    <!-- Button View Project -->
+    <div class="mt-6 flex justify-center">
+      <a id="projectLink" href="#" target="_blank" class="px-6 py-3 bg-primary text-white rounded-xl hover:scale-105 transition">
+        View Project
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  let slides = [];
+
+  const projects = {
+    'Eleftheria Game': {
+      desc: 'Platformer game created using Construct 2 with AI-assisted assets.',
+      link: 'https://youtu.be/example1',
+      media: [
+        'https://via.placeholder.com/600x300?text=Screenshot+1',
+        'https://via.placeholder.com/600x300?text=Screenshot+2',
+        'https://www.w3schools.com/html/mov_bbb.mp4'
+      ]
+    },
+    'Metaverse Lampung': {
+      desc: 'Virtual experience Rumah Adat Lampung Pepadun using Unity + Spatial.io.',
+      link: 'https://example.com/demo',
+      media: [
+        'https://via.placeholder.com/600x300?text=Screenshot+1',
+        'https://via.placeholder.com/600x300?text=Screenshot+2'
+      ]
+    },
+    'AI Music Projects': {
+      desc: 'Instrumental music created using AI tools and published on YouTube.',
+      link: 'https://youtu.be/example2',
+      media: [
+        'https://via.placeholder.com/600x300?text=Cover+1',
+        'https://via.placeholder.com/600x300?text=Cover+2',
+        'https://www.w3schools.com/html/mov_bbb.mp4'
+      ]
+    }
+  };
+
+  function openProjectModal(title) {
+    const modal = document.getElementById('projectModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    document.getElementById('projectTitle').innerText = title;
+    document.getElementById('projectDesc').innerText = projects[title].desc;
+    document.getElementById('projectLink').href = projects[title].link;
+
+    slides = projects[title].media;
+    currentSlide = 0;
+    renderCarousel();
+  }
+
+  function closeProjectModal() {
+    document.getElementById('projectModal').classList.add('hidden');
+    document.getElementById('carousel').innerHTML = '';
+  }
+
+  function renderCarousel() {
+    const container = document.getElementById('carousel');
+    container.innerHTML = '';
+    slides.forEach((item) => {
+      let el;
+      if(item.endsWith('.mp4')) {
+        el = document.createElement('video');
+        el.src = item;
+        el.controls = true;
+      } else {
+        el = document.createElement('img');
+        el.src = item;
+      }
+      el.className = 'min-w-full rounded-lg';
+      container.appendChild(el);
+    });
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    renderCarousel();
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    renderCarousel();
+  }
+</script>
+
+
 
 <!-- Contact -->
 <section id="contact" class="py-20 bg-gray-200 dark:bg-gray-800">
