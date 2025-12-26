@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Muhammad Rayhan | Portfolio</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+
+<!-- Navbar -->
+<header class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur z-50 shadow-sm">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-primary">Rayhan</h1>
+
+    <div class="flex items-center gap-6">
+      <div class="hidden md:flex gap-6">
+        <a href="#home" class="hover:text-primary">Home</a>
+        <a href="#about" class="hover:text-primary">About</a>
+        <a href="#skills" class="hover:text-primary">Skills</a>
+        <a href="#projects" class="hover:text-primary">Projects</a>
+        <a href="#contact" class="hover:text-primary">Contact</a>
+      </div>
+
+      <!-- Dark mode toggle -->
+      <button onclick="toggleDark()" class="p-2 rounded-lg border hover:bg-gray-200 dark:hover:bg-gray-700">
+        🌙
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section id="home" class="min-h-screen flex items-center justify-center px-6">
+  <div class="text-center max-w-3xl mt-20">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+      Hi, I'm <span class="text-primary">Muhammad Rayhan</span>
+    </h2>
+    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+      Informatics Graduate • Metaverse & Game Developer • Web Developer • Software Developer
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="#projects" class="px-6 py-3 bg-primary text-white rounded-xl hover:scale-105 transition">
+        View Projects
+      </a>
+      <a href="CV.pdf" class="px-6 py-3 border border-primary text-primary rounded-xl hover:bg-primary hover:text-white transition">
+        Download CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="py-20 px-6 max-w-6xl mx-auto">
+  <h3 class="text-3xl font-bold mb-6 text-center">About Me</h3>
+  <p class="text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+    I am an Informatics graduate with strong interest in immersive technology,
+    game development, and modern web solutions. I have experience building
+    Metaverse environments, games, websites, software, and AI-assisted creative projects.
+  </p>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="py-20 bg-gray-200 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-6">
+    <h3 class="text-3xl font-bold mb-10 text-center">Skills</h3>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow hover:scale-105 transition">
+        <h4 class="font-semibold mb-4">Programming</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">HTML</span><span class="badge">CSS</span>
+          <span class="badge">JavaScript</span><span class="badge">PHP</span>
+          <span class="badge">Python</span><span class="badge">C++</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow hover:scale-105 transition">
+        <h4 class="font-semibold mb-4">Framework & Tools</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">Laravel</span><span class="badge">React</span>
+          <span class="badge">Tailwind</span><span class="badge">Bootstrap</span>
+          <span class="badge">GitHub</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow hover:scale-105 transition">
+        <h4 class="font-semibold mb-4">Game & Metaverse</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge">Unity</span><span class="badge">Construct 2</span>
+          <span class="badge">Blender</span><span class="badge">Spatial.io</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
+  <h3 class="text-3xl font-bold mb-10 text-center">Projects</h3>
+
+  <div class="grid md:grid-cols-3 gap-8">
+    <div onclick="openModal('Eleftheria Game','Platformer game created using Construct 2 with AI-assisted assets.')" class="project-card">
+      <h4>Eleftheria Game</h4>
+      <p>Game Development</p>
+    </div>
+
+    <div onclick="openModal('Metaverse Rumah Adat Lampung','Educational metaverse experience using Unity, Blender, and Spatial.io.')" class="project-card">
+      <h4>Metaverse Lampung</h4>
+      <p>Metaverse</p>
+    </div>
+
+    <div onclick="openModal('AI Music Projects','Instrumental music created using AI tools and published on YouTube.')" class="project-card">
+      <h4>AI Music</h4>
+      <p>AI Creative</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-20 bg-gray-200 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-6">Contact Me</h3>
+    <p class="mb-8 text-gray-600 dark:text-gray-400">
+      Let's collaborate and build something amazing together.
+    </p>
+
+    <div class="flex justify-center gap-6">
+      <a href="mailto:rayhan270702@email.com" class="contact-link">Email</a>
+      <a href="https://github.com/naozuru" class="contact-link">GitHub</a>
+      <a href="https://www.linkedin.com/in/muhammad-rayhan-naozuru/" class="contact-link">LinkedIn</a>
+      <a href="https://www.youtube.com/@NaoZuru" class="contact-link">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-6 text-center text-sm bg-gray-900 text-gray-400">
+  © 2025 Muhammad Rayhan | Fullstack Developer
+</footer>
+
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center">
+  <div class="bg-white dark:bg-gray-900 p-6 rounded-xl max-w-md">
+    <h4 id="modalTitle" class="font-bold text-xl mb-2"></h4>
+    <p id="modalContent" class="text-gray-600 dark:text-gray-400"></p>
+    <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-primary text-white rounded">
+      Close
+    </button>
+  </div>
+</div>
+
+<!-- Utility Styles -->
+<style>
+  .badge {
+    @apply px-3 py-1 bg-primary/10 text-primary rounded-full text-sm;
+  }
+  .project-card {
+    @apply bg-white dark:bg-gray-900 p-6 rounded-2xl shadow cursor-pointer hover:scale-105 transition;
+  }
+  .contact-link {
+    @apply text-primary hover:underline;
+  }
+</style>
+
+<!-- Scripts -->
+<script>
+  function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+  }
+  function openModal(title, content) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalContent').innerText = content;
+    document.getElementById('modal').classList.remove('hidden');
+    document.getElementById('modal').classList.add('flex');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('modal').classList.remove('flex');
+  }
+</script>
+
+</body>
+</html>
